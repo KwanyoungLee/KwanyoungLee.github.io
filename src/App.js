@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import Photo from "./image/photo.jpg";
 
 import styled from "styled-components";
@@ -56,11 +56,13 @@ const Content = styled.div`
   display: flex;
   flex-direction: row;
   width: 77%;
-  margin-bottom: 80px;
+  margin-bottom: 30px;
 
-  @media only screen and (min-width : 768px) {
-
+  @media only screen and (min-width: 768px) {
   }
+`;
+const ContentWithMargin = styled(Content)`
+  margin-bottom: 80px;
 `;
 const Section = styled.div`
   font-size: 17px;
@@ -69,6 +71,9 @@ const Section = styled.div`
 `;
 const SubContent = styled.div`
   width: 73%;
+`;
+const Item = styled.div`
+  margin-bottom: 40px;
 `;
 const SubContentHeader = styled.div`
   display: flex;
@@ -101,7 +106,7 @@ const IconLink = styled(Link)`
   }
 `;
 const Role = styled.div`
-
+  font-size: 17px;
 `;
 const Duration = styled.div`
   font-size: 14px;
@@ -110,13 +115,82 @@ const Description = styled.ul`
   font-size: 17px;
 `;
 
+const Experiences = [
+  {
+    name: "JPMorgan Chase & Co.",
+    path: "https://www.jpmorganchase.com/",
+    duration: "JULY 2020 ⎯ AUG 2020",
+    role: "Summer Analyst",
+    description: [
+      "Social Good Project",
+    ],
+  },
+  {
+    name: "Hong Kong Monetary Authority (HKMA)",
+    path: "https://www.hkma.gov.hk/eng/",
+    duration: "JUNE 2019 ⎯ JAN 2020",
+    role: "Analyst Programmer, Student Placement",
+    description: [
+      "Assisted in business intelligence system enhancement to cope with regulatory requirements for prudential banking supervision and explored the opportunity for enterprise systems integrations between the HKMA and banks",
+      "Assisted in constructing financial and statistical data analysis with business intelligent tools and SQL developer",
+      "Provided technical support for production systems and automated repetitive tasks with SQL and Excel VBA ",
+    ],
+  },
+];
+
+const Projects = [
+  {
+    name: "Muto Farm (Farming Game Application",
+    path: "https://apps.apple.com/hk/app/muto-farm/id1522153669?l=en",
+    duration: "MAY 2020 ⎯ JULY 2020",
+    language: "React Native, Google Firebase",
+    description: [
+      "Developed an IOS application where users can grow crops in their own virtual farm and redeem real products",
+      "Implemented some key functionalities including creating a virtual farm, harvesting crops and redeeming rewards",
+    ],
+  },
+  {
+    name: "Wassup (Social Networking Website)",
+    duration: "MAR 2020 ⎯ PRESENT",
+    language: "React JS, Kotlin, Spring Boot",
+    description: [
+      "Working as a frontend developer, developing an anonymous social networking website where students in Hong Kong can share and interact around content and information anonymously",
+      "Implementing some key functionalities including signing up, logging in, writing posts and commenting on posts",
+    ],
+  },
+  {
+    name: "Big Two",
+    path: "https://github.com/KwanyoungLee/Big-Two",
+    duration: "FEB 2019 ⎯ MAY 2019",
+    language: "Java",
+    description: [
+      "Developed a multiplayer networked cross-platform card game",
+      "Implemented some key functionalities including connecting to game server, playing game and chatting with up to four other users",
+    ],
+  },
+]
+
+const Skills = [
+  {
+    name: "Language",
+    description: "Korean (Native), English (Fluent), Mandarin (Fluent)",
+  },
+  {
+    name: "Programming Skill",
+    description: "C/C++, Java, Python, SQL, JavaScript, Excel VBA",
+  },
+  {
+    name: "Web and Database",
+    description: "React.JS, React Native, MySQL, MongoDB, Firebase",
+  },
+]
 
 function App() {
   return (
     <Container>
       <Header>
         <div>
-          <Image src={Photo}/>
+          <Image src={Photo} />
         </div>
         <Info>
           <Name>Lee Kwanyoung</Name>
@@ -134,57 +208,71 @@ function App() {
           </Icons>
         </Info>
       </Header>
-      <Content>
+      <ContentWithMargin>
         <Section>About</Section>
         <SubContent>
-          I'm a motivated full-stack engineer who has experience building and scaling web applications and services in various domains.
-
-          I'm also passionate about open source contributions, working in high impact environments with frequent deployments, and helping growing development teams build great products.
+          I am a motivated and self-driven student with a demonstrated history of 
+          working in the banking industry.
+          I am interested in data analytics and web/app develpment. 
         </SubContent>
-      </Content>
+      </ContentWithMargin>
       <Content>
         <Section>Experience</Section>
         <SubContent>
-          <SubContentHeader>
-            <Link href="https://www.google.com/"><ContentName>HKMA</ContentName></Link>
-            <Duration>JUNE 2019 - JAN 2020</Duration>
-          </SubContentHeader>
-          <Role>Analyst programmer</Role>
-          <Description>
-            <li>
-            Assisted in business intelligence system enhancement to cope with regulatory requirements for prudential banking 
-            supervision and explored the opportunity for enterprise systems integrations between the HKMA and banks
-            </li>
-          </Description>
+          {Experiences.map((experience, index) => (
+            <Item id={index}>
+              <SubContentHeader>
+                <Link href={experience.path}>
+                  <ContentName>{experience.name}</ContentName>
+                </Link>
+                <Duration>{experience.duration}</Duration>
+              </SubContentHeader>
+              <Role>{experience.role}</Role>
+              <Description>
+                {experience.description.map((desc, index) => {
+                  return <li key={index}>{desc}</li>;
+                })}
+              </Description>
+            </Item>
+          ))}
         </SubContent>
       </Content>
       <Content>
         <Section>Projects</Section>
         <SubContent>
-          <SubContentHeader>
-            <Link href="https://www.google.com/"><ContentName>HKMA</ContentName></Link>
-            <Duration>JUNE 2019 - JAN 2020</Duration>
-          </SubContentHeader>
-          <Role>Analyst programmer</Role>
-          <Description>
-            <li>
-              Assisted in business intelligence system enhancement to cope with regulatory requirements for prudential banking 
-              supervision and explored the opportunity for enterprise systems integrations between the HKMA and banks
-            </li>
-          </Description>
+          {Projects.map((project, index) => (
+            <Item id={index}>
+              <SubContentHeader>
+                <Link href={project.path}>
+                  <ContentName>{project.name}</ContentName>
+                </Link>
+                <Duration>{project.duration}</Duration>
+              </SubContentHeader>
+              <Role>{project.language}</Role>
+              <Description>
+                {project.description.map((desc, index) => {
+                  return <li key={index}>{desc}</li>;
+                })}
+              </Description>
+            </Item>
+          ))}
         </SubContent>
       </Content>
-      <Content>
+      <ContentWithMargin>
         <Section>Skills</Section>
         <SubContent>
-          <SubContentHeader>
-            <ContentName>Language</ContentName>
-          </SubContentHeader>
-          <Role>
-            Korean (Native), English (Fluent), Mandarin (Fluent)
-          </Role>
+        {Skills.map((skill, index) => (
+            <Item id={index}>
+              <SubContentHeader>
+                <Link>
+                  <ContentName>{skill.name}</ContentName>
+                </Link>
+              </SubContentHeader>
+              <Role>{skill.description}</Role>
+            </Item>
+          ))}
         </SubContent>
-      </Content>
+      </ContentWithMargin>
     </Container>
   );
 }
