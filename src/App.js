@@ -3,7 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import Photo from "./image/photo.jpg";
+import Photo from "./images/photo.jpg";
 
 import styled from "styled-components";
 
@@ -14,6 +14,7 @@ const Container = styled.div`
   margin-left: 10%;
   font-size: 20px;
   color: #282828;
+  line-height: 1.5;
 `;
 const Header = styled.div`
   display: flex;
@@ -21,6 +22,10 @@ const Header = styled.div`
   justify-content: flex-start;
   margin-top: 100px;
   margin-bottom: 100px;
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 const Image = styled.img`
   width: 150px;
@@ -58,7 +63,9 @@ const Content = styled.div`
   width: 77%;
   margin-bottom: 30px;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
   }
 `;
 const ContentWithMargin = styled(Content)`
@@ -68,9 +75,18 @@ const Section = styled.div`
   font-size: 17px;
   width: 27%;
   color: #707070;
+  @media only screen and (max-width: 1024px) {
+    margin-bottom: 20px;
+    width: 100%;
+  }
 `;
 const SubContent = styled.div`
   width: 73%;
+  @media only screen and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 const Item = styled.div`
   margin-bottom: 40px;
@@ -80,10 +96,19 @@ const SubContentHeader = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 10px;
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 const ContentName = styled.div`
   font-size: 20px;
   font-weight: 600;
+  @media only screen and (max-width: 768px) {
+    font-size: 18px;
+  }
+`;
+const ContentNameWithLink = styled(ContentName)`
   border-bottom: 2px solid #b290d4;
 `;
 const Link = styled.a`
@@ -106,13 +131,16 @@ const IconLink = styled(Link)`
   }
 `;
 const Role = styled.div`
-  font-size: 17px;
+  font-size: 16px;
 `;
 const Duration = styled.div`
   font-size: 14px;
 `;
 const Description = styled.ul`
-  font-size: 17px;
+  font-size: 16px;
+`;
+const Li = styled.li`
+  margin-bottom: 10px;
 `;
 
 const Experiences = [
@@ -140,7 +168,7 @@ const Experiences = [
 
 const Projects = [
   {
-    name: "Muto Farm (Farming Game Application",
+    name: "Muto Farm (Farming Game Application)",
     path: "https://apps.apple.com/hk/app/muto-farm/id1522153669?l=en",
     duration: "MAY 2020 ⎯ JULY 2020",
     language: "React Native, Google Firebase",
@@ -177,11 +205,11 @@ const Skills = [
   },
   {
     name: "Programming Skill",
-    description: "C/C++, Java, Python, SQL, JavaScript, Excel VBA",
+    description: "C/C++, Java, Python, JavaScript, Excel VBA",
   },
   {
     name: "Web and Database",
-    description: "React.JS, React Native, MySQL, MongoDB, Firebase",
+    description: "React.JS, React Native, SQL, MongoDB, Firebase",
   },
 ]
 
@@ -209,10 +237,10 @@ function App() {
         </Info>
       </Header>
       <ContentWithMargin>
-        <Section>About</Section>
+        <Section>About Me</Section>
         <SubContent>
           I am a motivated and self-driven student with a demonstrated history of 
-          working in the banking industry.
+          working in the banking industry.<br/><br/>
           I am interested in data analytics and web/app develpment. 
         </SubContent>
       </ContentWithMargin>
@@ -223,14 +251,14 @@ function App() {
             <Item id={index}>
               <SubContentHeader>
                 <Link href={experience.path}>
-                  <ContentName>{experience.name}</ContentName>
+                  <ContentNameWithLink>{experience.name}</ContentNameWithLink>
                 </Link>
                 <Duration>{experience.duration}</Duration>
               </SubContentHeader>
               <Role>{experience.role}</Role>
               <Description>
                 {experience.description.map((desc, index) => {
-                  return <li key={index}>{desc}</li>;
+                  return <Li key={index}>{desc}</Li>;
                 })}
               </Description>
             </Item>
@@ -244,14 +272,14 @@ function App() {
             <Item id={index}>
               <SubContentHeader>
                 <Link href={project.path}>
-                  <ContentName>{project.name}</ContentName>
+                  <ContentNameWithLink>{project.name}</ContentNameWithLink>
                 </Link>
                 <Duration>{project.duration}</Duration>
               </SubContentHeader>
               <Role>{project.language}</Role>
               <Description>
                 {project.description.map((desc, index) => {
-                  return <li key={index}>{desc}</li>;
+                  return <Li key={index}>{desc}</Li>;
                 })}
               </Description>
             </Item>
@@ -264,9 +292,7 @@ function App() {
         {Skills.map((skill, index) => (
             <Item id={index}>
               <SubContentHeader>
-                <Link>
-                  <ContentName>{skill.name}</ContentName>
-                </Link>
+                <ContentName>{skill.name}</ContentName>
               </SubContentHeader>
               <Role>{skill.description}</Role>
             </Item>
