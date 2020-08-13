@@ -14,6 +14,7 @@ const Container = styled.div`
   flex-direction: column;
   margin-left: 10%;
   font-size: 20px;
+  font-family:  Nanum Gothic;
   color: #282828;
   line-height: 1.5;
   background-image: url(${Background});
@@ -88,6 +89,7 @@ const Section = styled.div`
 `;
 const SubContent = styled.div`
   width: 73%;
+  font-size: 18px;
   @media only screen and (max-width: 1024px) {
     display: flex;
     flex-direction: column;
