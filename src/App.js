@@ -97,6 +97,9 @@ const SubContent = styled.div`
 const Item = styled.div`
   margin-bottom: 40px;
 `;
+const ItemWithSmallerMargin = styled.div`
+  margin-bottom: 20px;
+`;
 const SubContentHeader = styled.div`
   display: flex;
   flex-direction: row;
@@ -113,6 +116,11 @@ const ContentName = styled.div`
   @media only screen and (max-width: 768px) {
     font-size: 18px;
   }
+`;
+const Organization = styled.span`
+  font-size: 14px;
+  font-weight: normal;
+  color: #707070;
 `;
 const ContentNameWithLink = styled(ContentName)`
   border-bottom: 2px solid #b290d4;
@@ -216,7 +224,24 @@ const Skills = [
   },
   {
     name: "Web and Database",
-    description: "React.JS, React Native, SQL, MongoDB, Firebase",
+    description: "React.js, React Native, Node.js, SQL, MongoDB, Firebase",
+  },
+]
+const Awards = [
+  {
+    name: "HKU Foundation Entrance Scholarship (Full tuition)",
+    org: "HKU Foundation",
+    date: "2016 ⎯ 2020",
+  },
+  {
+    name: "Certificate of Academic Excellence",
+    org: "UCSI College",
+    date: "JUNE 2016",
+  },
+  {
+    name: "Outstanding Learner Award",
+    org: "Pearson Edexcel",
+    date: "SEPT 2015",
   },
 ]
 
@@ -293,7 +318,7 @@ function App() {
           ))}
         </SubContent>
       </Content>
-      <ContentWithMargin>
+      <Content>
         <Section>Skills</Section>
         <SubContent>
         {Skills.map((skill, index) => (
@@ -303,6 +328,22 @@ function App() {
               </SubContentHeader>
               <Role>{skill.description}</Role>
             </Item>
+          ))}
+        </SubContent>
+      </Content>
+      <ContentWithMargin>
+        <Section>Awards</Section>
+        <SubContent>
+        {Awards.map((award, index) => (
+            <ItemWithSmallerMargin id={index}>
+              <SubContentHeader>
+                <ContentName>
+                  {award.name}{" "}
+                  <Organization>{award.org}</Organization>
+                </ContentName>
+                <Duration>{award.date}</Duration>
+              </SubContentHeader>
+            </ItemWithSmallerMargin>
           ))}
         </SubContent>
       </ContentWithMargin>
